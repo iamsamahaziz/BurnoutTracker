@@ -86,4 +86,3 @@ y_pred = model.predict(X_test)
 **Samah AZIZ**  
 Étudiante en Licence Ingénierie Informatique  
 🔗 [GitHub](https://github.com/iamsamahaziz) | [LinkedIn](https://linkedin.com/in/samah-az)
-
