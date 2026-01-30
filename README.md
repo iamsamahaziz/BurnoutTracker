@@ -88,6 +88,3 @@ y_pred = model.predict(X_test)
 📧 iamsamahaziz@gmail.com  
 🔗 [GitHub](https://github.com/iamsamahaziz) | [LinkedIn](https://linkedin.com/in/samah-az)
 
-## 📝 License
-
-Ce projet est sous licence MIT.
