@@ -60,5 +60,8 @@ pip install pandas scikit-learn numpy
 
 **Samah AZIZ**  
 Étudiante en Licence Ingénierie Informatique - FST Mohammedia  
+<<<<<<< HEAD
 📧 iamsamahaziz@gmail.com  
+=======
+>>>>>>> 538cb66385c60b459f21797321d0334933ade782
 🔗 [GitHub](https://github.com/iamsamahaziz) | [LinkedIn](https://linkedin.com/in/samah-az)
