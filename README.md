@@ -149,8 +149,8 @@ Burnout_Detection/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/iamsamahaziz/BurnoutProject.git
-cd BurnoutProject
+git clone https://github.com/iamsamahaziz/burnout-prediction-app.git
+cd burnout-prediction-app
 ```
 
 ### 2. Install dependencies
