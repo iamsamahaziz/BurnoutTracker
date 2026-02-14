@@ -7,165 +7,165 @@
   <img src="https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge" />
 </p>
 
-> **Application web interactive** permettant de prédire le risque de burnout chez les employés à partir de données professionnelles, en combinant un modèle de Machine Learning (régression logistique) et un système de règles métier.
+> **Interactive web application** for predicting employee burnout risk based on professional data, combining a Machine Learning model (logistic regression) with a rule-based scoring system.
 
 ---
 
-## 📸 Aperçu
+## 📸 Overview
 
-L'utilisateur remplit un formulaire avec ses informations professionnelles, et l'application retourne instantanément :
-- Le **niveau de risque** (faible ✅ / modéré ⚠️ / élevé 🔴 / très élevé 🚨)
-- La **probabilité de burnout** en pourcentage
+The user fills out a form with their professional information, and the application instantly returns:
+- The **risk level** (low ✅ / moderate ⚠️ / high 🔴 / very high 🚨)
+- The **burnout probability** as a percentage
 
 ---
 
-## 🎯 Fonctionnalités
+## 🎯 Features
 
-| Fonctionnalité | Description |
+| Feature | Description |
 |---|---|
-| 🧠 **Prédiction ML** | Modèle de régression logistique entraîné sur des données synthétiques RH |
-| 📏 **Règles métier** | Système de scoring basé sur le stress, les heures, la satisfaction et le télétravail |
-| ⚖️ **Score hybride** | Combinaison pondérée : 30 % ML + 70 % règles métier |
-| 🌐 **Interface web** | Formulaire interactif avec résultat immédiat |
-| 🎨 **Design soigné** | UI moderne avec gradient, cartes ombrées et responsive |
+| 🧠 **ML Prediction** | Logistic regression model trained on synthetic HR data |
+| 📏 **Business Rules** | Scoring system based on stress, hours, satisfaction & remote work |
+| ⚖️ **Hybrid Score** | Weighted combination: 30% ML + 70% business rules |
+| 🌐 **Web Interface** | Interactive form with instant results |
+| 🎨 **Modern Design** | Clean UI with gradients, card shadows & responsive layout |
 
 ---
 
-## 🛠️ Technologies
+## 🛠️ Tech Stack
 
-| Outil | Utilisation |
+| Tool | Usage |
 |---|---|
-| **Python 3.12** | Langage principal |
-| **Flask** | Framework web (backend + routing) |
-| **Scikit-learn** | Entraînement du modèle & `StandardScaler` |
-| **Pandas** | Prétraitement des données & one-hot encoding |
-| **Joblib** | Sérialisation du modèle (`.pkl`) |
-| **HTML / CSS** | Interface utilisateur |
+| **Python 3.12** | Core language |
+| **Flask** | Web framework (backend + routing) |
+| **Scikit-learn** | Model training & `StandardScaler` |
+| **Pandas** | Data preprocessing & one-hot encoding |
+| **Joblib** | Model serialization (`.pkl`) |
+| **HTML / CSS** | Frontend interface |
 
 ---
 
 ## 📊 Dataset
 
-- **Source** : [Kaggle — Synthetic HR Burnout Dataset](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset)
-- **Variable cible** : `Burnout` (0 = Pas de burnout, 1 = Burnout)
+- **Source**: [Kaggle — Synthetic HR Burnout Dataset](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset)
+- **Target variable**: `Burnout` (0 = No burnout, 1 = Burnout)
 
-### Features utilisées
+### Input Features
 
 | Feature | Type | Description |
 |---|---|---|
-| `Age` | Numérique | Âge de l'employé |
-| `Experience` | Numérique | Années d'expérience |
-| `WorkHoursPerWeek` | Numérique | Heures travaillées par semaine |
-| `RemoteRatio` | Numérique | Pourcentage de télétravail (0–100) |
-| `SatisfactionLevel` | Numérique | Niveau de satisfaction (1–5) |
-| `StressLevel` | Numérique | Niveau de stress (1–10) |
-| `Gender` | Catégoriel | Genre (encodé via one-hot) |
-| `JobRole` | Catégoriel | Rôle : Analyst, Engineer, HR, Manager, Sales |
+| `Age` | Numeric | Employee age |
+| `Experience` | Numeric | Years of experience |
+| `WorkHoursPerWeek` | Numeric | Weekly working hours |
+| `RemoteRatio` | Numeric | Remote work percentage (0–100) |
+| `SatisfactionLevel` | Numeric | Job satisfaction level (1–5) |
+| `StressLevel` | Numeric | Stress level (1–10) |
+| `Gender` | Categorical | Gender (one-hot encoded) |
+| `JobRole` | Categorical | Role: Analyst, Engineer, HR, Manager, Sales |
 
 ---
 
-## ⚙️ Pipeline ML
+## ⚙️ ML Pipeline
 
 ```
-Données CSV
+CSV Data
    │
    ▼
-Prétraitement (suppression "Name", One-hot encoding)
+Preprocessing (drop "Name", one-hot encoding)
    │
    ▼
-Normalisation (StandardScaler)
+Normalization (StandardScaler)
    │
    ▼
-Split 80/20 stratifié
+Stratified 80/20 split
    │
    ▼
-Régression Logistique (class_weight="balanced")
+Logistic Regression (class_weight="balanced")
    │
    ▼
-Seuil de décision à 0.80
+Decision threshold at 0.80
    │
    ▼
-Export du modèle (.pkl) + scaler (.pkl)
+Export model (.pkl) + scaler (.pkl)
 ```
 
 ---
 
-## 📈 Résultats du modèle
+## 📈 Model Performance
 
-| Métrique | Score |
+| Metric | Score |
 |---|---|
-| **Accuracy** | 96.25 % |
-| **Recall (Burnout)** | 88.46 % |
-| **Precision (Burnout)** | 65.71 % |
+| **Accuracy** | 96.25% |
+| **Recall (Burnout)** | 88.46% |
+| **Precision (Burnout)** | 65.71% |
 
 ---
 
-## 🧮 Système de scoring hybride
+## 🧮 Hybrid Scoring System
 
-La prédiction finale combine deux approches :
+The final prediction combines two approaches:
 
 ```
-Score final = (ML × 0.30) + (Règles métier × 0.70)
+Final Score = (ML × 0.30) + (Business Rules × 0.70)
 ```
 
-### Règles métier
+### Business Rules
 
-| Facteur | Condition | Points |
+| Factor | Condition | Points |
 |---|---|---|
 | 🔴 Stress | ≥ 8 → +50 · ≥ 6 → +35 · ≥ 4 → +15 | 0–50 |
-| ⏰ Heures/sem | ≥ 60 → +40 · ≥ 50 → +25 · ≥ 45 → +10 | 0–40 |
+| ⏰ Hours/week | ≥ 60 → +40 · ≥ 50 → +25 · ≥ 45 → +10 | 0–40 |
 | 😞 Satisfaction | ≤ 1.5 → +35 · ≤ 2.5 → +20 · ≤ 3.0 → +10 | 0–35 |
-| 🏠 Télétravail | < 20 % ET stress ≥ 5 → +15 | 0–15 |
+| 🏠 Remote work | < 20% AND stress ≥ 5 → +15 | 0–15 |
 
-### Interprétation
+### Risk Interpretation
 
-| Probabilité | Résultat |
+| Probability | Result |
 |---|---|
-| < 20 % | ✅ Risque faible |
-| 20 – 44 % | ⚠️ Risque modéré |
-| 45 – 69 % | 🔴 Risque élevé |
-| ≥ 70 % | 🚨 Risque très élevé |
+| < 20% | ✅ Low risk |
+| 20 – 44% | ⚠️ Moderate risk |
+| 45 – 69% | 🔴 High risk |
+| ≥ 70% | 🚨 Very high risk |
 
 ---
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
 Burnout_Detection/
-├── app.py                  # Application Flask (routes + logique de prédiction)
-├── burnout_model5.pkl      # Modèle de régression logistique sérialisé
-├── scaler5.pkl             # StandardScaler sérialisé
+├── app.py                  # Flask app (routes + prediction logic)
+├── burnout_model5.pkl      # Serialized logistic regression model
+├── scaler5.pkl             # Serialized StandardScaler
 ├── templates/
-│   └── index.html          # Interface utilisateur (formulaire + résultat)
+│   └── index.html          # User interface (form + result display)
 ├── static/
-│   └── style.css           # Styles CSS (design responsive)
+│   └── style.css           # CSS styles (responsive design)
 └── README.md
 ```
 
 ---
 
-## 🚀 Installation & Lancement
+## 🚀 Installation & Usage
 
-### 1. Cloner le dépôt
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/iamsamahaziz/BurnoutProject.git
 cd BurnoutProject
 ```
 
-### 2. Installer les dépendances
+### 2. Install dependencies
 
 ```bash
 pip install flask pandas scikit-learn joblib
 ```
 
-### 3. Lancer l'application
+### 3. Run the application
 
 ```bash
 python app.py
 ```
 
-### 4. Ouvrir dans le navigateur
+### 4. Open in your browser
 
 ```
 http://127.0.0.1:5000
@@ -173,10 +173,10 @@ http://127.0.0.1:5000
 
 ---
 
-## 👤 Auteur
+## 👤 Author
 
 **Samah AZIZ**  
-Étudiante en Licence Ingénierie Informatique — FST Mohammedia
+Computer Science Engineering Student — FST Mohammedia
 
 [![GitHub](https://img.shields.io/badge/GitHub-iamsamahaziz-181717?style=flat-square&logo=github)](https://github.com/iamsamahaziz)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-samah--az-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/samah-az)
