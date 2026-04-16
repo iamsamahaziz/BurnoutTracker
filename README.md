@@ -1,78 +1,81 @@
-# 🔥 BurnoutGuard AI - Advanced Wellness Dashboard
+# 🔥 BurnoutGuard AI - Guide de Déploiement & Analyse Bien-être
 
-> **Empowering professional well-being through Data Science.**
+> **Intelligence Artificielle au service de la santé mentale en milieu professionnel.**
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.1.2-green.svg)](https://flask.palletsprojects.com/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.8.0-orange.svg)](https://scikit-learn.org/)
-[![PWA](https://img.shields.io/badge/PWA-Ready-blueviolet.svg)](https://web.dev/progressive-web-apps/)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](http://Solvex.pythonanywhere.com)
-
-**BurnoutGuard AI** is a premium, glassmorphic wellness dashboard that leverages **Machine Learning** to help professionals detect, track, and manage workplace stress. It combines scientific analysis with immediate mental health tools.
-
-![App Preview](Preview.png)
+Ce projet est une application web PWA (Progressive Web App) qui utilise un modèle de **Machine Learning** (Régression Logistique) pour évaluer le risque de burnout chez les employés. Ce guide vous accompagne pour une installation manuelle parfaite sur Windows, macOS ou Linux.
 
 ---
 
-## 🚀 Key Features
+## 🏗️ 1. Architecture & Fonctionnement
 
-### 🧠 Pure Machine Learning Assessment
-*   **Logistic Regression Engine**: 100% model-driven predictions powered by `burnout_model5.pkl`.
-*   **Factor Breakdown**: Detailed impact analysis of Stress Level, Work Hours, and Job Satisfaction.
-*   **30-Day Action Plan**: A tailored roadmap to improve resilience and productivity.
-
-### 🌟 Advanced Integrated Tools
-*   **📊 Industry Benchmarks**: Compare your risk score against averages for Engineers, Managers, Analysts, etc.
-*   **✨ Breathing Exercise**: Built-in guided **4-7-8 breathing module** for immediate relief.
-*   **😊 Mood Tracking**: 30-day interactive mood heatmap and journaling.
-*   **🎉 Gamification**: Unlock 6 unique Wellness Badges as you improve.
+L'application suit une logique simple mais robuste :
+1.  **Collecte** : Formulaire interactif sur les conditions de travail.
+2.  **Analyse** : Le modèle `burnout_model5.pkl` traite les données normalisées par `scaler5.pkl`.
+3.  **Restitution** : Dashboard dynamique avec recommandations personnalisées et plan d'action sur 4 semaines.
 
 ---
 
-## 🛠️ Installation & Usage
+## 🚀 2. Installation Manuelle Détaillée
 
-### 1. Prerequisites
-- Python 3.12+
-- `pip` (Python package manager)
+### 2.1. Prérequis
+- **Python 3.12** recommandé (les modèles `.pkl` sont sensibles à la version de Python).
+- **Navigateur moderne** (Chrome, Edge ou Firefox).
 
-### 2. Local Setup
-```bash
-# Clone the repository
-git clone https://github.com/iamsamahaziz/BurnoutTracker.git
-cd BurnoutTracker
+### 2.2. Configuration de l'environnement (Pas à pas)
 
-# Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\\Scripts\\activate
+1.  **Clonage du projet** :
+    ```bash
+    git clone https://github.com/iamsamahaziz/BurnoutTracker.git
+    cd BurnoutTracker
+    ```
 
-# Install dependencies
-pip install -r requirements.txt
-```
+2.  **Création de l'environnement virtuel (VENV)** :
+    *   **Sur Windows :**
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
+    *   **Sur macOS/Linux :**
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
 
-### 3. Run the Application
+3.  **Installation des dépendances** :
+    ```bash
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
+
+### 2.3. Lancement du serveur FlasK
 ```bash
 python app.py
 ```
-Access the dashboard at `http://localhost:5000`.
+*L'application sera accessible sur `http://localhost:5000`.*
 
 ---
 
-## 📦 Project Structure
-```markdown
-BurnoutTracker/
-├── app.py                # Flask application core
-├── burnout_model5.pkl    # Trained ML Model
-├── scaler5.pkl           # Data scaler for features
-├── static/               # Assets & Styles
-├── templates/            # HTML Dashboards
-└── history.json          # Local assessment logs
-```
+## 📊 3. Guide d'Utilisation des Fonctionnalités
+
+### 🧪 L'Évaluation Burnout
+- Remplissez les champs honnêtement.
+- **Stress Level** : Notez de 1 (Détendu) à 10 (Épuisé).
+- **Work Hours** : Entrez votre moyenne hebdomadaire réelle (ex: 48).
+
+### ✨ Exercice de Respiration (Box Breathing)
+Un module interactif est disponible dans le dashboard pour aider à réduire le cortisol instantanément via la méthode **4-7-8**.
+
+### 😊 Mood Tracker heatmap
+L'application enregistre localement vos humeurs dans `mood_data.json` pour afficher une carte thermique (heatmap) de votre moral sur les 30 derniers jours.
 
 ---
 
-## 🛡️ Privacy & Reliability
-- **Local Data**: All history and mood logs are stored locally (server-side JSON).
-- **Model Integrity**: Uses standard Logistic Regression with high accuracy benchmarks.
+## 🛠️ 4. Dépannage (Troubleshooting)
+
+- **Erreur "Model not found"** : Vérifiez que `burnout_model5.pkl` est bien à la racine du projet.
+- **Erreur de version Python** : Si le site crash au chargement du modèle, assurez-vous d'utiliser la même version de Python que celle utilisée pour l'entraînement (3.12).
+- **Local Storage** : Si les graphiques ne s'affichent pas, vérifiez que votre navigateur autorise les scripts locaux.
 
 ---
-Created by **Samah AZIZ**
+**Auteur** : Samah AZIZ
+**Projet** : Wellness & Data Science - 2026
